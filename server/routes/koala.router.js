@@ -7,7 +7,10 @@ let pack = [];
 
 
 // GET
-
+koalaRouter.get('/', (req, res)=>{
+  console.log('in /koalas GET');
+  res.send(pack);
+})
 
 // POST
 koalaRouter.post('/', (req, res)=>{
