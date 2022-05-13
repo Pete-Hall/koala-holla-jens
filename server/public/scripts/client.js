@@ -51,7 +51,7 @@ function getKoalas(){
     let el = $('#viewKoalas');
     el.empty();
     for(let i=0; i<response.length; i++) {
-      el.append(`<tr><td>${response[i].name}</td><td>${response[i].age}</td><td>${response[i].gender}</td><td>${response[i].readyForTransfer}</td><td>${response[i].notes}</td></tr>`);
+      el.append(`<tr><td>${response[i].koala_name}</td><td>${response[i].age}</td><td>${response[i].gender}</td><td>${response[i].ready_for_transfer}</td><td>${response[i].notes}</td></tr>`);
     }
   }).catch(function(err){
     console.log(err);

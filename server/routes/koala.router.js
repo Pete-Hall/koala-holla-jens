@@ -9,6 +9,13 @@ const pool = require('../routes/pool');
 // GET
 koalaRouter.get('/', (req, res)=>{
   console.log('in /koalas GET');
+  const queryString = `SELECT * FROM koalas;`;
+  pool.query(queryString).then((result)=>{
+    res.send(result.rows);
+  }).catch((err)=>{
+    console.log(err);
+    res.sendStatus(500);
+  })
 })
 
 // POST
