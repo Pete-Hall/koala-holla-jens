@@ -5,6 +5,7 @@ function onReady() {
   $('#addButton').on('click', addKoala);
   // load existing koalas on page load
   getKoalas();
+  $('#viewKoalas').on('click', '.transferButton', transferKoala);
 };
 
 function addKoala() {
@@ -51,7 +52,7 @@ function getKoalas(){
     let el = $('#viewKoalas');
     el.empty();
     for(let i=0; i<response.length; i++) {
-      el.append(`<tr><td>${response[i].koala_name}</td><td>${response[i].age}</td><td>${response[i].gender}</td><td>${response[i].ready_for_transfer}</td><td>${response[i].notes}</td></tr>`);
+      el.append(`<tr><td>${response[i].koala_name}</td><td>${response[i].age}</td><td>${response[i].gender}</td><td>${response[i].ready_for_transfer}</td><td>${response[i].notes}</td><td><button class="transferButton" data-id="${response[i].id}">Ready for Transfer</button></td></tr>`);
     }
   }).catch(function(err){
     console.log(err);
@@ -59,6 +60,18 @@ function getKoalas(){
   })
   // ajax call to server to get koalas
   // TODO: display koalas on the DOM
-  
 } // end getKoalas
 
+function transferKoala() {
+  console.log('in transferKoala:', $(this).data('id'));
+  $.ajax({
+    method: 'PUT',
+    url: '/koalas?id=' + $(this).data('id')
+  }).then(function(response){
+    console.log('back from PUT:', response);
+    getKoalas();
+  }).catch(function(err){
+    console.log(err);
+    alert('error transferring koala');
+  })
+}

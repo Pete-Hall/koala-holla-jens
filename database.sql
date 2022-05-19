@@ -7,6 +7,8 @@ CREATE TABLE koalas(
   "koala_name" varchar(35)
 );
 
-SELECT * FROM koalas;
+SELECT * FROM koalas ORDER BY id ASC;
 
 INSERT INTO koalas (age, gender, ready_for_transfer, notes, koala_name) VALUES ('2', 'F', 'true', 'test Koala', 'Oliver');
+
+UPDATE koalas SET ready_for_transfer=true WHERE id=2;
